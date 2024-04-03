@@ -7,11 +7,16 @@
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "build": "tsc && tsc-alias -p tsconfig.json",
-    "lint": "biome check --apply ."
+    "lint": "biome check --apply .",
+    "migrate": "drizzle-kit generate:mysql",
+    "introspect": "drizzle-kit introspect:mysql",
+    "prototype": "drizzle-kit push:mysql",
+    "studio": "drizzle-kit studio --port 3000 --verbose"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.4",
     "@types/node": "^20.12.3",
+    "drizzle-kit": "^0.20.14",
     "lefthook": "1.6.8",
     "tsc-alias": "^1.8.8",
     "tsx": "^4.7.1",
@@ -23,7 +28,10 @@
     "@hono/zod-openapi": "^0.9.10",
     "@hono/zod-validator": "^0.2.1",
     "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.7",
+    "drizzle-zod": "^0.5.1",
     "hono": "^4.2.1",
+    "mysql2": "^3.9.3",
     "zod": "^3.22.4"
   }
 }
