@@ -19,6 +19,10 @@ productRouter.get("products", async ({ json }) => {
       const { code } = product;
       const image = getImagePath(code);
 
+      if (!image) {
+        return product;
+      }
+
       return { ...product, image };
     });
 
@@ -43,7 +47,13 @@ productRouter.get("products/:code", async ({ json, req }) => {
       return json({ message: "Producto no encontrado" }, 404);
     }
 
-    const product = { ...results, image: getImagePath(code) };
+    const image = getImagePath(code);
+
+    if (!image) {
+      return json(results, 200);
+    }
+
+    const product = { ...results, image };
 
     return json(product, 200);
   } catch (error) {
