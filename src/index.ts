@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { prettyJSON } from "hono/pretty-json";
+import productRouter from "./product";
 
 import "dotenv/config";
 
@@ -14,6 +15,9 @@ const app = new Hono();
 app.use(cors({ origin: "*" }));
 app.use(logger());
 app.use(prettyJSON());
+
+// Routes
+app.route("api", productRouter);
 
 serve(
   {
