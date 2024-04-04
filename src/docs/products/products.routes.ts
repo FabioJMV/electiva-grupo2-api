@@ -33,7 +33,17 @@ const productSelectSchema = createSelectSchema(productDBSchema, {
       description: "Impuesto del producto",
       example: "21.00"
     })
-});
+}).merge(
+  z.object({
+    image: z
+      .string()
+      .openapi({
+        description: "Ruta de la imagen del producto",
+        example: "/images/abcde12345.jpg"
+      })
+      .optional()
+  })
+);
 
 export const getAllProductsRoute = createRoute({
   method: "get",
@@ -92,7 +102,7 @@ export const getProductByCodeRoute = createRoute({
       description: "Producto",
       content: {
         "application/json": {
-          schema: createSelectSchema(productDBSchema)
+          schema: productSelectSchema
         }
       }
     },
