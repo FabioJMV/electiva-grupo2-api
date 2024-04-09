@@ -12,8 +12,7 @@ app.openapi(getAllProductsRoute, ({ json }) => {
         price: "100.00",
         description: "Producto de prueba",
         quantity: 100,
-        tax: "21.00"
-      }
+      },
     ],
     200
   );
@@ -24,7 +23,7 @@ app.openapi(getProductByCodeRoute, ({ json, req }) => {
     return json(
       {
         message: "Código de producto no encontrado",
-        error: "not_found"
+        error: "not_found",
       },
       404
     );
@@ -36,7 +35,6 @@ app.openapi(getProductByCodeRoute, ({ json, req }) => {
       price: "100.00",
       description: "Producto de prueba",
       quantity: 100,
-      tax: "21.00"
     },
     200
   );

@@ -6,42 +6,37 @@ const productSelectSchema = createSelectSchema(productDBSchema, {
   code: (schema) =>
     schema.code.openapi({
       description: "Código del producto",
-      example: "abcde12345"
+      example: "abcde12345",
     }),
   name: (schema) =>
     schema.name.openapi({
       description: "Nombre del producto",
-      example: "Producto de prueba"
+      example: "Producto de prueba",
     }),
   price: (schema) =>
     schema.price.openapi({
       description: "Precio del producto",
-      example: "100.00"
+      example: "100.00",
     }),
   description: (schema) =>
     schema.description.openapi({
       description: "Descripción del producto",
-      example: "Producto de prueba"
+      example: "Producto de prueba",
     }),
   quantity: (schema) =>
     schema.quantity.openapi({
       description: "Stock del producto",
-      example: 100
+      example: 100,
     }),
-  tax: (schema) =>
-    schema.tax.openapi({
-      description: "Impuesto del producto",
-      example: "21.00"
-    })
 }).merge(
   z.object({
     image: z
       .string()
       .openapi({
         description: "Ruta de la imagen del producto",
-        example: "/images/abcde12345.jpg"
+        example: "/images/abcde12345.jpg",
       })
-      .optional()
+      .optional(),
   })
 );
 
@@ -53,9 +48,9 @@ export const getAllProductsRoute = createRoute({
       description: "Lista de productos",
       content: {
         "application/json": {
-          schema: productSelectSchema.array()
-        }
-      }
+          schema: productSelectSchema.array(),
+        },
+      },
     },
     500: {
       description: "Error al obtener los productos",
@@ -64,15 +59,15 @@ export const getAllProductsRoute = createRoute({
           schema: z.object({
             message: z.string().openapi({
               description: "Mensaje de error",
-              example: "Error al obtener los productos"
+              example: "Error al obtener los productos",
             }),
-            error: z.unknown()
-          })
-        }
-      }
-    }
+            error: z.unknown(),
+          }),
+        },
+      },
+    },
   },
-  tags: ["Productos"]
+  tags: ["Productos"],
 });
 
 export const getProductByCodeRoute = createRoute({
@@ -90,21 +85,21 @@ export const getProductByCodeRoute = createRoute({
             in: "path",
             description: "Código del producto",
             required: true,
-            example: "abcde12345"
+            example: "abcde12345",
           },
           type: "string",
-          example: "abcde12345"
-        })
-    })
+          example: "abcde12345",
+        }),
+    }),
   },
   responses: {
     200: {
       description: "Producto",
       content: {
         "application/json": {
-          schema: productSelectSchema
-        }
-      }
+          schema: productSelectSchema,
+        },
+      },
     },
     400: {
       description: "Código de producto inválido",
@@ -113,11 +108,11 @@ export const getProductByCodeRoute = createRoute({
           schema: z.object({
             message: z.string().openapi({
               description: "Mensaje de error",
-              example: "Código de producto inválido"
-            })
-          })
-        }
-      }
+              example: "Código de producto inválido",
+            }),
+          }),
+        },
+      },
     },
     404: {
       description: "Producto no encontrado",
@@ -126,11 +121,11 @@ export const getProductByCodeRoute = createRoute({
           schema: z.object({
             message: z.string().openapi({
               description: "Mensaje de error",
-              example: "Producto no encontrado"
-            })
-          })
-        }
-      }
+              example: "Producto no encontrado",
+            }),
+          }),
+        },
+      },
     },
     500: {
       description: "Error al obtener los productos",
@@ -138,13 +133,13 @@ export const getProductByCodeRoute = createRoute({
         "application/json": {
           schema: z.object({
             message: z.string().openapi({
-              description: "Mensaje de error"
+              description: "Mensaje de error",
             }),
-            error: z.unknown()
-          })
-        }
-      }
-    }
+            error: z.unknown(),
+          }),
+        },
+      },
+    },
   },
-  tags: ["Productos"]
+  tags: ["Productos"],
 });
