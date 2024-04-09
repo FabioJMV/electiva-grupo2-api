@@ -34,5 +34,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "exclude": ["node_modules", "dist", "./*.ts"]
+  "include": ["src/**/*.ts"]
 }
