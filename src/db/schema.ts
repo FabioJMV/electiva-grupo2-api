@@ -6,5 +6,4 @@ export const productDBSchema = mysqlTable("producto", {
   description: varchar("descripcion", { length: 255 }).notNull(),
   quantity: int("cantidad").notNull(),
   price: decimal("precio", { precision: 10, scale: 2 }).notNull(),
-  tax: decimal("impuesto", { precision: 10, scale: 2 }).notNull()
 });

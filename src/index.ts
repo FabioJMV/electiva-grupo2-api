@@ -13,7 +13,7 @@ const port = Number.parseInt(process.env.PORT || "3000");
 const app = new Hono();
 
 // Middlewares
-app.use(cors({ origin: "*" }));
+app.use(cors());
 app.use(logger());
 app.use(prettyJSON());
 
